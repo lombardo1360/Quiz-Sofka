@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cuestionario {% endblock %}
+
+{% block contenido %}
+
+    <div class="container">
+        
+        <div class="jumbotrom my 4">
+            
+                <h4 class="text-success"> Felicidades a respondido de manera correcta todas las preguntas</h4>
+                         
+                <h4 class="text-success"> Su puntaje total fue de {{respondida.usuario.puntajeTotal }}</h4>
+                         
+           
+        </div>
+
+        
+
+    </div>
+
+{% endblock %}

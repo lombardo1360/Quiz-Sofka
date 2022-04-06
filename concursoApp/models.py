@@ -54,7 +54,20 @@ class QuizUsuario(models.Model):
             preguntaRespondida.correcta = True
             preguntaRespondida.puntajeObtenido = respuestaSeleccionada.pregunta.max_puntaje
             preguntaRespondida.respuesta = respuestaSeleccionada
+        
+        else:
+            preguntaRespondida.respuesta = respuestaSeleccionada
+        
         preguntaRespondida.save()
+        
+        self.actualizarPuntaje()
+        
+    def actualizarPuntaje(self):
+        puntajeActualizado = self.intentos.filter(correcta=True).aggregate(
+            models.Sum('puntajeObtenido'))['puntajeObtenido__sum']
+        
+        self.puntajeTotal = puntajeActualizado
+        self.save()
             
 
 class PreguntasRespondida(models.Model):

@@ -48,8 +48,6 @@ def resultadoPreguntas(request, preguntaRespondida_pk):
     return render(request, 'play/resultados.html', context)
 
 
-
-
 def loginView(request):
     titulo = "login"
     form = UsuarioLoginFormulario(request.POST or None)
