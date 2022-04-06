@@ -38,7 +38,15 @@ class QuizUsuario(models.Model):
         intento = PreguntasRespondida(pregunta=pregunta, usuario=self)
         intento.save()
 
-    def obtenerPreguntas(self):
+
+
+    # def obtenerPreguntas(self):
+    #     for i in range(1,6):
+    #         # categoria = PreguntasRespondida.objects.filter(pregunta__categoriaPregunta=i)
+    #         pregunta  = Pregunta.objects.filter(categoriaPregunta=i)
+    #         return random.choice(pregunta)
+            
+    def obtenerPreguntas(self):   
         respondidas         = PreguntasRespondida.objects.filter(usuario=self).values_list('pregunta__pk', flat=True)
         preguntasRestantes  =Pregunta.objects.exclude(pk__in=respondidas)
         if not preguntasRestantes.exists():

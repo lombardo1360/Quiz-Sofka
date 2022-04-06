@@ -56,7 +56,7 @@ def loginView(request):
         password = form.cleaned_data.get("password")
         usuario = authenticate(username=username, password=password)
         login(request, usuario)
-        return redirect('home')
+        return redirect('home')        
     context = {
         'form':form,
         'titulo': titulo
@@ -86,28 +86,4 @@ def logoutVista(request):
         
 
 
-# def index(request):
-#     return render(request, 'paginas/formUsuario.html')
-
-# def registrarUsuario(request):
-#     print("prueba")
-#     nombre    = request.POST['txtName']
-#     print(nombre)
-#     apellidos = request.POST['txtApellido']
-#     username  = request.POST['txtUsername']
-#     email     = request.POST['txtEmail']
-
-#     usuario   = Usuario.objects.create(nombre=nombre, apellidos=apellidos, userName=username, email=email)   
-
-#     return redirect('/')
-
-# def preguntas(request):
-
-#     a = random.choice(range(1,6))  
-#     print(a)  
-#     # preguntas= Respuesta.objects.filter(pregunta__categoriaPregunta=1, pregunta__id=a)
-#     preguntas= Respuesta.objects.filter(pregunta__categoriaPregunta=1 )
-#     print(preguntas)
-    
-#     return render(request, 'paginas/quiz.html', {'preguntas': preguntas})
     

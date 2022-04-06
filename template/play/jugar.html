@@ -2,7 +2,10 @@
 
 {% block titulo %}Cuestionario {% endblock %}
 
+{% block barra %}{% endblock %}
+
 {% block contenido %}
+
      
     {% if pregunta is None %}
 
@@ -17,7 +20,8 @@
 
         <div class="container">
             <div class="jumbotron my 4">
-
+                
+                <h2 class="text-info">Categoria: {{pregunta.categoriaPregunta|safe}}</h2>
                 <h3>{{pregunta.textoPregunta}}</h3>
 
                 <form method="POST" class="form"> {% csrf_token %}

@@ -15,6 +15,10 @@
         <nav class="navbar navbar-expand navbar-light bg-light">
             <div class="nav navbar-nav">
                 <a class="nav-item nav-link active" href="/">Inicio</a>
+                {% block barra %}
+                <a class="btn btn-outline-success my-2 my-sm-0 " href="login/">Login</a>
+                <a class="btn btn-outline-success my-2 my-sm-0" href="registro/">Registrarse</a>
+                {% endblock %}
             </div>
         </nav>
 

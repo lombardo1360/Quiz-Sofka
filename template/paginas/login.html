@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 
+{% load crispy_forms_tags %}
+
 {% block titulo %}Cuestionario {% endblock %}
+{% block barra %}{% endblock %}
 
 {% block contenido %}
 
     <form method="POST">
         {% csrf_token %}
 
-        {{form.as_p}}
+        {{form| crispy}}
 
         <button type="submit">Entrar</button>
 

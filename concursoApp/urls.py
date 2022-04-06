@@ -6,8 +6,8 @@ urlpatterns = [
     path('', inicio, name='inicio'),
     path('home/', home, name='home'),
     path('registro/', registro, name='registro'),
-    path('logout/', loginView, name='login'),
-    path('login/', logoutVista, name='logoutVista'),
+    path('login/', loginView, name='login'),
+    path('logout/', logoutVista, name='logout'),
     path('quiz/', quiz, name='quiz'),
     path('resultado/<int:preguntaRespondida_pk>/', resultadoPreguntas, name='resultado'),
 
