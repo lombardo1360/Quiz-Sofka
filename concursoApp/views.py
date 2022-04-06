@@ -82,7 +82,7 @@ def registro(request):
 
 def logoutVista(request):
     logout(request)
-    return redirect("/")
+    return redirect('inicio')
         
 
 
