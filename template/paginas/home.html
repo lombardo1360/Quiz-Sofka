@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block titulo %}Inicio {% endblock %}
+
+{% block contenido %}
+    <div class=" p-5 text-center" id="inicio">
+        <h1>Bienvenido al juego {{user}}</h1>
+        <p>En este Juego pondras a prueba tus conocimientos generales</p>
+        <a href="{% url 'quiz' %}">
+            <button type="submit">INICIAR TEST</button>
+        </a>
+        
+    </div>
+
+    <style>
+        #inicio button:hover {
+        color: #E5E7E9;
+        background: crimson;
+        border: 1px solid #283747;
+      }
+    </style>
+    
+
+{% endblock %}

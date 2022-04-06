@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cuestionario {% endblock %}
+
+{% block contenido %}
+     
+    {% if pregunta is None %}
+
+        <div class="container">
+            <div class="jumbotron my-4">
+                <h1>Ya has repondido el cuestionario</h1>
+                <a href="">Ver resultados</a>
+            </div>
+        </div>
+
+    {% else %}
+
+        <div class="container">
+            <div class="jumbotron my 4">
+
+                <h3>{{pregunta.textoPregunta}}</h3>
+
+                <form method="POST" class="form"> {% csrf_token %}
+                    
+                    <input type="hidden" name="pregunta_pk" value="{{pregunta.pk}}">
+
+                    {% for opcion in pregunta.opciones.all %}  
+
+                        <input type="radio" class="form-check-input" name="respuesta_pk" value="{{opcion.pk}}" id="choice-{{forloop.counter}}">
+                        <label class="form-check-label" for="choice-{{forloop.counter}}">
+                            {{opcion.textoRespuesta}}
+                        </label>
+
+                    {% endfor %}  
+                    <button type="submit" class="btn btn-success">
+                        Enviar
+                    </button> 
+                </form>
+
+            </div>
+        </div>
+
+    {% endif %}
+
+{% endblock %}

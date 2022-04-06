@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cuestionario {% endblock %}
+
+{% block contenido %}
+
+    <div class="container">
+        
+        <div class="jumbotrom my 4">
+            
+            <h3 class="text-info">{{respondida.pregunta.textoPregunta|safe}}</h3>
+            <p>
+                <strong>Tu respuesta: </strong>
+                {{respondida.respuesta.textoRespuesta|safe}}
+            </p>
+            {% if respondida.respuesta.correcta%}
+                <h4 class="text-success"> Tu respuesta es correcta</h4>
+                <a href="{% url 'quiz' %}">
+                    <button class="btn-success">Continuar</button>
+                </a>
+            {% else %}
+                <h4 class="text-danger"> Tu respuesta en incorrecta</h4>
+                <h4>Ha finalizado el juego</h4>
+                <h4>Su puntaje fue {{respondida.puntajeObtenido}}</h4>
+            {% endif%}
+        </div>
+
+        
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block titulo %}Cuestionario {% endblock %}
+
+{% block contenido %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        {{form.as_p}}
+
+        <button type="submit">Entrar</button>
+
+    </form>
+
+
+{% endblock %}
