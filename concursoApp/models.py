@@ -78,8 +78,12 @@ class QuizUsuario(models.Model):
         puntajeActualizado = self.intentos.filter(correcta=True).aggregate(
             models.Sum('puntajeObtenido'))['puntajeObtenido__sum']
         
-        self.puntajeTotal = puntajeActualizado
-        self.save()
+        if puntajeActualizado == None:
+            self.puntajeTotal = 0
+            self.save
+        else:           
+            self.puntajeTotal = puntajeActualizado
+            self.save()
             
 # Clase que integra los demas modelos
 class PreguntasRespondida(models.Model):
