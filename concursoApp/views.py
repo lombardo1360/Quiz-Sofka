@@ -32,6 +32,7 @@ def quiz(request):
     else:
         
         pregunta = QuizUser.obtenerPreguntas()
+        print(pregunta)
         
         if pregunta is not None:
             QuizUser.crearIntento(pregunta)
@@ -49,6 +50,10 @@ def resultadoPreguntas(request, preguntaRespondida_pk):
     }
     
     return render(request, 'play/resultados.html', context)
+    
+def resultadoTotal(request):
+    
+    return render(request, 'play/resultadoFinal.html')
 
 
 def loginView(request):

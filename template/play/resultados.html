@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
-{% block titulo %}Cuestionario {% endblock %}
-{% block barra %}{% endblock %}
+{% block titulo %}Resultado{% endblock %}
+{% block barra %}
+<a class="btn btn-outline-success my-2 my-sm-0 " href="{% url 'logout' %}">Salir</a>
+{% endblock %}
 
 {% block contenido %}
 

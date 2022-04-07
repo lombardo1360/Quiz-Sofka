@@ -43,7 +43,13 @@ class QuizUsuario(models.Model):
         intento = PreguntasRespondida(pregunta=pregunta, usuario=self)
         intento.save()
                 
-    # Funcion que obtiene de todas las preguntas una al azar            
+    # def obtenerPreguntas(self):
+        
+    #     pregunta  = Pregunta.objects.filter(categoriaPregunta__pk=1)
+        
+    #     return random.choice(pregunta)
+
+    #Funcion que obtiene de todas las preguntas una al azar            
     def obtenerPreguntas(self):   
         respondidas         = PreguntasRespondida.objects.filter(usuario=self).values_list('pregunta__pk', flat=True)
         preguntasRestantes  =Pregunta.objects.exclude(pk__in=respondidas)
@@ -81,7 +87,7 @@ class PreguntasRespondida(models.Model):
     pregunta        = models.ForeignKey(Pregunta, on_delete=models.CASCADE)
     respuesta       = models.ForeignKey(ElegirRespuesta, on_delete=models.CASCADE,  null=True)
     correcta        = models.BooleanField(verbose_name='¿Esta es la respuesta correcta?',default=False, null=False)
-    puntajeObtenido = models.DecimalField(verbose_name='Puntaje obtenido', default=0, decimal_places=2, max_digits=6)   
+    puntajeObtenido = models.DecimalField(verbose_name='Puntaje obtenido', default=1, decimal_places=2, max_digits=6)   
 
 
     
