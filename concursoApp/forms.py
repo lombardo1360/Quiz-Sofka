@@ -1,10 +1,7 @@
-from django import forms
-
-from .models import *
-
+from django                    import forms
+from .models                   import *
 from django.contrib.auth.forms import UserCreationForm
-
-from django.contrib.auth import authenticate,  get_user_model
+from django.contrib.auth       import authenticate,  get_user_model
 
 user = get_user_model()
 
@@ -24,6 +21,7 @@ class ElegirInlineFormser(forms.BaseInlineFormSet):
         except AssertionError:
             raise forms.ValidationError("Una sola respuesta es la permitidaa")
 
+#Clase que crea el formulario login y valida que exista en la base de datos
 class UsuarioLoginFormulario(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
@@ -43,7 +41,7 @@ class UsuarioLoginFormulario(forms.Form):
         return super(UsuarioLoginFormulario, self).clean(*args, **kwargs)
 
 
-
+#Clase para crear formulario que crea usuario propia de django y ademas añade 3 atributos
 class RegistroFormulario(UserCreationForm):
     email      = forms.EmailField(required=True)
     first_name = forms.CharField(required=True)

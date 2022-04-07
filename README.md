@@ -11,3 +11,14 @@ Para ejecutar la aplicacion de manera local se recomienda seguir los siguientes 
 
 Base de datos(DB)
 
+Para este proyecto se uso la base de datos sqlite3 que django proporciona por defecto
+
+Para ingresar al administrador por defecto de Django se accede a siguiente:
+http://127.0.0.1:8000/admin 
+
+las credenciales de super usuario son:
+    username   = admin
+    contraseña = quiz1234
+
+aqui podra consultar que se esta gusrdando los datos en la DB
+

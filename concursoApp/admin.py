@@ -1,8 +1,6 @@
 from django.contrib import admin
-
-
-from .models import *
-from .forms import *
+from .models        import *
+from .forms         import *
 
 class ElegirRespuestaInLine(admin.TabularInline):
     model      = ElegirRespuesta 
@@ -22,8 +20,6 @@ class PreguntaRespondidaAdmin(admin.ModelAdmin):
 
     class meta:
         model = PreguntasRespondida
-
-
 
 admin.site.register(PreguntasRespondida)
 admin.site.register(Pregunta, PreguntaAdmin)

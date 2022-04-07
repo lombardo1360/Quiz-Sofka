@@ -1,8 +1,8 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .forms import RegistroFormulario, UsuarioLoginFormulario
+from django.shortcuts    import render, redirect, get_object_or_404
+from .forms              import RegistroFormulario, UsuarioLoginFormulario
 from django.contrib.auth import authenticate, login, logout
 import random
-from .models import QuizUsuario, Pregunta, PreguntasRespondida
+from .models             import QuizUsuario, Pregunta, PreguntasRespondida
 
 def inicio(request):
     return render(request, 'paginas/inicio.html')
@@ -22,14 +22,17 @@ def quiz(request):
         try:
             optionSeleccionada = preguntaRespondida.pregunta.opciones.get(pk=respuesta_pk) 
         except ObjectDoesNotExiste:
-            raise Http404  
+            raise Http404
+            print("aqui")
         
         QuizUser.validarIntentos(preguntaRespondida, optionSeleccionada)
         
         return redirect('resultado', preguntaRespondida.pk)
     
     else:
+        
         pregunta = QuizUser.obtenerPreguntas()
+        
         if pregunta is not None:
             QuizUser.crearIntento(pregunta)
             

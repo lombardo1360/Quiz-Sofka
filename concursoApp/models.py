@@ -3,13 +3,16 @@ from django.conf                import settings
 from django.contrib.auth.models import User
 import random 
 
+#Modelos que formaran las tablas 
 
+# Categoria de las preguntas
 class Categoria(models.Model):
     nombreCategoria = models.TextField(max_length= 200, verbose_name='Categoria', null=False)
 
     def __str__(self):
         return self.nombreCategoria
     
+# Preguntas con su categoria 
 class Pregunta(models.Model):
     NUMERO_DE_RESPUESTAS_PERMITIDAS = 1
     textoPregunta     = models.TextField(verbose_name='Texto de la pregunta')
@@ -21,6 +24,7 @@ class Pregunta(models.Model):
         
         return (self.textoPregunta)
 
+#Elegir respuesta
 class ElegirRespuesta(models.Model):
     MAX_RESPUESTA  = 4
     pregunta       = models.ForeignKey(Pregunta, related_name='opciones' ,on_delete=models.CASCADE) 
@@ -30,6 +34,7 @@ class ElegirRespuesta(models.Model):
     def __str__(self):
         return self.textoRespuesta
 
+#Clase que identifica el usuario con su puntaje obtenido
 class QuizUsuario(models.Model):
     usuario      = models.OneToOneField(User, on_delete=models.CASCADE)
     puntajeTotal = models.DecimalField(verbose_name="Puntaje total", default=0, decimal_places=2, max_digits=10) 
@@ -37,15 +42,8 @@ class QuizUsuario(models.Model):
     def crearIntento(self, pregunta):
         intento = PreguntasRespondida(pregunta=pregunta, usuario=self)
         intento.save()
-
-
-
-    # def obtenerPreguntas(self):
-    #     for i in range(1,6):
-    #         # categoria = PreguntasRespondida.objects.filter(pregunta__categoriaPregunta=i)
-    #         pregunta  = Pregunta.objects.filter(categoriaPregunta=i)
-    #         return random.choice(pregunta)
-            
+                
+    # Funcion que obtiene de todas las preguntas una al azar            
     def obtenerPreguntas(self):   
         respondidas         = PreguntasRespondida.objects.filter(usuario=self).values_list('pregunta__pk', flat=True)
         preguntasRestantes  =Pregunta.objects.exclude(pk__in=respondidas)
@@ -77,7 +75,7 @@ class QuizUsuario(models.Model):
         self.puntajeTotal = puntajeActualizado
         self.save()
             
-
+# Clase que integra los demas modelos
 class PreguntasRespondida(models.Model):
     usuario         = models.ForeignKey(QuizUsuario, on_delete=models.CASCADE, related_name='intentos')
     pregunta        = models.ForeignKey(Pregunta, on_delete=models.CASCADE)

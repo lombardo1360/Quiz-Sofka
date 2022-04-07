@@ -2,48 +2,53 @@
 
 {% block titulo %}Cuestionario {% endblock %}
 
-{% block barra %}{% endblock %}
+{% block barra %}
+<a class="btn btn-outline-success my-2 my-sm-0 " href="{% url 'logout' %}">Cerrar sesion</a>
+{% endblock %}
 
 {% block contenido %}
 
-     
-    {% if pregunta is None %}
 
-        <div class="container">
-            <div class="jumbotron my-4">
+{% if pregunta is None %}
+
+<div class="container justify-content:center">
+    <div class="jumbotron my-4 jumbotron-fluid"">
                 <h1>Ya has repondido el cuestionario</h1>
-                <a href="{% url 'resultadoTotal'%}">Ver resultados</a>
-            </div>
-        </div>
+                <a href=" {% url 'resultadoTotal' %}">Ver resultados</a>
+    </div>
+</div>
 
-    {% else %}
+{% else %}
 
-        <div class="container">
-            <div class="jumbotron my 4">
-                
-                <h2 class="text-info">Categoria: {{pregunta.categoriaPregunta|safe}}</h2>
-                <h3>{{pregunta.textoPregunta}}</h3>
+<div class="container-fluid">
+    <div class="jumbotron my-5">
 
-                <form method="POST" class="form"> {% csrf_token %}
-                    
-                    <input type="hidden" name="pregunta_pk" value="{{pregunta.pk}}">
+        <h2 class="text-info">Categoria: {{pregunta.categoriaPregunta|safe}}</h2>
+        <h3>{{pregunta.textoPregunta}}</h3>
 
-                    {% for opcion in pregunta.opciones.all %}  
+        <form method="POST" class="form"> {% csrf_token %}
 
-                        <input type="radio" class="form-check-input" name="respuesta_pk" value="{{opcion.pk}}" id="choice-{{forloop.counter}}">
-                        <label class="form-check-label" for="choice-{{forloop.counter}}">
-                            {{opcion.textoRespuesta}}
-                        </label>
+            <input type="hidden" name="pregunta_pk" value="{{pregunta.pk}}">
 
-                    {% endfor %}  
-                    <button type="submit" class="btn btn-success">
-                        Enviar
-                    </button> 
-                </form>
+            {% for opcion in pregunta.opciones.all %}
+            <p>
+                <input type="radio" class="form-check-input" name="respuesta_pk" value="{{opcion.pk}}"
+                    id="choice-{{forloop.counter}}">
+                <label class="form-check-label" for="choice-{{forloop.counter}}">
+                    {{opcion.textoRespuesta}}
+                </label>
+            </p>
 
-            </div>
-        </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-success">
+                Enviar
+            </button>
 
-    {% endif %}
+        </form>
+
+    </div>
+</div>
+
+{% endif %}
 
 {% endblock %}
