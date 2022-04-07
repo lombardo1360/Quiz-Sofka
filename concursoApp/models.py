@@ -51,8 +51,10 @@ class QuizUsuario(models.Model):
 
     #Funcion que obtiene de todas las preguntas una al azar            
     def obtenerPreguntas(self):   
-        respondidas         = PreguntasRespondida.objects.filter(usuario=self).values_list('pregunta__pk', flat=True)
-        preguntasRestantes  =Pregunta.objects.exclude(pk__in=respondidas)
+        categoria           = PreguntasRespondida.objects.filter(usuario=self).values_list('pregunta__categoriaPregunta', flat=True).distinct()
+        preguntasRestantes  =Pregunta.objects.exclude(categoriaPregunta__in=categoria
+                                                      )
+        print(preguntasRestantes)
         if not preguntasRestantes.exists():
             return None
         return random.choice(preguntasRestantes)
