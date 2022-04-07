@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block titulo %}Tablero{% endblock %}
+{% block barra %}
+    <a class="btn btn-outline-success my-2 my-sm-0 " href="{% url 'logout' %}">Salir</a>
+{% endblock %}
+
+{% block contenido %}
+
+    <h1 class="text-center my-4"> 
+        Los {{contar_quiz}} mejores jugadores
+    </h1>
+
+    <table class="table table-striped table-bodered">
+        <thead>
+            <tr>
+                <th>Posicion</th>
+                <th>usuario</th>
+                <th>Puntaje</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for userquiz in usuario_quiz%}
+            <tr>
+                <th>{{forloop.counter}}</th>
+                <th>{{userquiz.usuario.username}}</th>
+                <th>{{userquiz.puntajeTotal}}</th>
+            </tr>
+            {% endfor %}
+            
+    </table>
+    
+
+{% endblock %}

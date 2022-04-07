@@ -43,11 +43,6 @@ class QuizUsuario(models.Model):
         intento = PreguntasRespondida(pregunta=pregunta, usuario=self)
         intento.save()
                 
-    # def obtenerPreguntas(self):
-        
-    #     pregunta  = Pregunta.objects.filter(categoriaPregunta__pk=1)
-        
-    #     return random.choice(pregunta)
 
     #Funcion que obtiene de todas las preguntas una al azar            
     def obtenerPreguntas(self):   

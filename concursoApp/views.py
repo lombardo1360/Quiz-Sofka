@@ -23,7 +23,6 @@ def quiz(request):
             optionSeleccionada = preguntaRespondida.pregunta.opciones.get(pk=respuesta_pk) 
         except ObjectDoesNotExiste:
             raise Http404
-            print("aqui")
         
         QuizUser.validarIntentos(preguntaRespondida, optionSeleccionada)
         
@@ -51,9 +50,16 @@ def resultadoPreguntas(request, preguntaRespondida_pk):
     
     return render(request, 'play/resultados.html', context)
     
-def resultadoTotal(request):
+def tablero(request):
+    total_usuario_quiz = QuizUsuario.objects.order_by('-puntajeTotal')[:10]
+    contador           = total_usuario_quiz.count()
     
-    return render(request, 'play/resultadoFinal.html')
+    context = {
+        'usuario_quiz': total_usuario_quiz,
+        'contar_quiz': contador 
+    }
+    
+    return render(request, 'play/tablero.html', context)
 
 
 def loginView(request):
