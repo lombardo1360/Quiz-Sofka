@@ -20,7 +20,7 @@
     {% else %}
 
     <div class="container-fluid">
-        <div class="jumbotron my-5">
+        <div class="card-body">
 
             <h2 class="text-info">Categoria: {{pregunta.categoriaPregunta|safe}}</h2>
             <h3>{{pregunta.textoPregunta}}</h3>
@@ -42,11 +42,12 @@
                 <button type="submit" class="btn btn-success">
                     Enviar
                 </button>
+                <a href="{% url 'salir' %}" class="btn btn-danger">Retirarse</a>
             </form>
             <br>
-            <button type="danger" class="btn-danger">
-                Retirarse
-            </button>
+            
+                
+            
             
         </div>
     </div>

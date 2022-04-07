@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block titulo %}Retiro{% endblock %}
+
+{% block barra %}
+    <a class="btn btn-outline-success my-2 my-sm-0 " href="{% url 'logout' %}">Salir</a>
+{% endblock %}
+
+{% block contenido %}
+
+    <h1 align="center" class="text-info">Se ha reirado del juego</h1>
+    <br>
+    <h2 align="center" class="red-text">Su puntaje es 0</h2>
+
+{% endblock %}

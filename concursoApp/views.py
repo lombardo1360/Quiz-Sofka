@@ -91,6 +91,9 @@ def registro(request):
 def logoutVista(request):
     logout(request)
     return redirect('inicio')
+
+def retirarse(request):
+    return  render(request, 'play/salir.html')
         
 
 
